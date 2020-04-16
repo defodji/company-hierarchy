@@ -43,11 +43,13 @@ public class CompanyApplication implements CommandLineRunner {
 		try (Reader reader = new InputStreamReader(resource.getInputStream(), UTF_8)) {
 			Type listEmployeeObject = new TypeToken<ArrayList<Employee>>() {}.getType();
 			List<Employee> employees = gson.fromJson(reader, listEmployeeObject);
+
 			new TreePrinter(new CompanyHierarchy(employees).getHierarchy()).print(System.out);
+
 		} catch (IOException e) {
-			LOG.error("Error reading file");
+			LOG.error("Error reading file", e);
 		} catch (HierarchyException e) {
-			LOG.error(e.getMessage());
+			LOG.error("Error in the hierarchy", e);
 		}
 	}
 }
