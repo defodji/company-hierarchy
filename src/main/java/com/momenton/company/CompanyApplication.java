@@ -28,15 +28,15 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 public class CompanyApplication implements CommandLineRunner {
 	private static final Logger LOG = LoggerFactory.getLogger(CompanyApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(CompanyApplication.class, args);
-	}
-
 	@Autowired
 	private Gson gson;
 
 	@Value("classpath:company.json")
 	private Resource resource;
+
+	public static void main(String[] args) {
+		SpringApplication.run(CompanyApplication.class, args);
+	}
 
 	@Override
 	public void run(String... args) {
